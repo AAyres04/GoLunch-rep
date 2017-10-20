@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-// agregar los 6 archivos .jar correspondientes para que funcione el codigo 
+// agregar los 6 archivos .jar correspondientes para que funcione el codigo // 
 //archivos .jar : https://drive.google.com/file/d/0B1T79UjkY81wTFBCcm5kbTNrYjQ/view 
-package leer.archivos.de.excel;
+package leer.excel;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
@@ -20,8 +14,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * 
  * @author pablo
  */
-public class LeerArchivosDeExcel {
-    public LeerArchivosDeExcel(File filename){
+public class LeerExcel {
+    public LeerExcel(File filename){
         List cellData = new ArrayList() ;
         try { 
             
@@ -63,7 +57,7 @@ public class LeerArchivosDeExcel {
         // TODO code application logic here
         File f=new File("C:/Users/Pablo/Desktop/prueba.xlsx");
         if (f.exists()) { 
-            LeerArchivosDeExcel obj = new LeerArchivosDeExcel(f);
+            LeerExcel obj = new LeerExcel(f);
         }
     }
     
