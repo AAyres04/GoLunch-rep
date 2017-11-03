@@ -122,9 +122,11 @@ public class Login extends JFrame {
 
           }
             if (s==1){
-                System.out.println(ID);
+              System.out.println(ID);
+                 dispose(); 
+               JOptionPane.showMessageDialog(null,"Has iniciado sesion correctamente.");
                 MainMenu menu =new MainMenu();
-                dispose();
+             
             } else if(s==2){
               JOptionPane.showMessageDialog(null,"Please insert Username and Password");
               s=0;
