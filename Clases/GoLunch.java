@@ -17,7 +17,13 @@ public class GoLunch {
         // TODO code application logic here
         Menu menu = new Menu();
         menu.imprimirLista();
-        menu.buscarInput();
+        menu.buscarNombre();
+        menu.imprimirListaTrue();
+        menu.buscarDir();
+        menu.imprimirListaTrue();
+        menu.buscarHoraI();
+        menu.imprimirListaTrue();
+        menu.buscarHoraF();
         menu.imprimirListaTrue();
     }
 }

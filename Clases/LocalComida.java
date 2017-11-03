@@ -12,8 +12,8 @@ package golunch;
 public class LocalComida {
     private String nombre;
     private String direccion;
-    private int horaInicio;
-    private int horaFinal;
+    private String horaInicio;
+    private String horaFinal;
     private boolean localBuscado;
     private int idRest;
     public LocalComida(){
@@ -23,8 +23,8 @@ public class LocalComida {
     public LocalComida(String test, int id){
         this.nombre = test;
         this.direccion = "testeo";
-        this.horaInicio = 10;
-        this.horaFinal = 20;
+        this.horaInicio = "10:00";
+        this.horaFinal = "20:10";
         this.localBuscado = false;
         this.idRest = id;
     }
@@ -43,17 +43,17 @@ public class LocalComida {
         this.direccion = direccion;
     }
     //Hora Inicio
-    public int getHoraInicio(){
+    public String getHoraInicio(){
         return this.horaInicio;
     }
-    public void setHoraInicio(int horaInicio){
+    public void setHoraInicio(String horaInicio){
         this.horaInicio = horaInicio;
     }
     //Hora Final
-    public int getHoraFinal(){
+    public String getHoraFinal(){
         return this.horaFinal;
     }
-    public void setHoraFinal(int horaFinal){
+    public void setHoraFinal(String horaFinal){
         this.horaFinal = horaFinal;
     }
     //Check local buscado

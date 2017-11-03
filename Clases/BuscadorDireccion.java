@@ -15,6 +15,17 @@ public class BuscadorDireccion extends Buscador {
     }
     @Override
     public void compararInput(Filtrado objFiltrado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.splitInput();
+        if(objFiltrado.getListaLocales() != null){
+            for(int i=0;i<objFiltrado.getListaLocales().size(); i++){
+                for(int c=0; c<this.listaInput.size(); c++){
+                    if(objFiltrado.getListaLocales().get(i).getDireccion().contains(this.listaInput.get(c))){
+                        System.out.println("YES!");
+                        objFiltrado.getListaLocales().get(i).setLocalBuscado(true);
+                    }
+                }
+            }
+        }
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

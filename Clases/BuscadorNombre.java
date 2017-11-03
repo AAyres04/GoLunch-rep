@@ -6,6 +6,7 @@
 package golunch;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -19,7 +20,6 @@ public class BuscadorNombre extends Buscador {
     *Metodos:
     getInput
     setInput
-    splitinput
     getlistainput
     */
     @Override

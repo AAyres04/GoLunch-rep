@@ -34,7 +34,8 @@ public class Filtrado {
         }
     }
     public void limpiarListadoLocal(){
-        
+        for(int i = 0; i<this.listaLocales.size();i++){
+            this.listaLocales.get(i).setLocalBuscado(false);
+        }
     }
-    //TEST
 }
