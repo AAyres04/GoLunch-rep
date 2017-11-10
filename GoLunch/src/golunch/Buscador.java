@@ -29,6 +29,7 @@ public abstract class Buscador {
         this.listaInput.addAll(Arrays.asList(splitInput));
     }
     public ArrayList getListaInput(){
+        int hola=2;
         return this.listaInput;
     }
     public abstract void compararInput(Filtrado objFiltrado);
