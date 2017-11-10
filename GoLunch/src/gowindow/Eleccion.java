@@ -20,7 +20,7 @@ public class Eleccion extends JFrame {
     private JButton principal;
     private JLabel ingreso;
     private JPanel panel;
-    
+  
     public Eleccion(){
         
         admin= new JButton("Administrador");
