@@ -11,10 +11,10 @@ public class ModLeerJava {
 
     public static void main(String[] args) throws IOException {
         leerExcel objExcel = new leerExcel(); 
-        String rutaExcel = System.getProperty("user.dir")+"C:/Users/Pablo/Desktop/TAREA/prueba.xlsx"; 
+        String rutaExcel = System.getProperty("user.dir")+"C:/Users/Pablo/Desktop/prueba.xlsx"; 
         objExcel.readExcel(rutaExcel, "prueba.xlsx", "Sheet1");
         modExcel excelObj = new modExcel(); 
-        excelObj.modCelda(1, 2, "asd", "C:/Users/Pablo/Desktop/TAREA/prueba.xlsx");
+        excelObj.modCelda(1, 2, "asd", "C:/Users/Pablo/Desktop/prueba.xlsx");
     }
     
 }
