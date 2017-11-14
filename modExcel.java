@@ -12,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 
 public class modExcel {
     public void modCelda(int numFila, int numCol, String valor, String rutaExcel) throws IOException { 
-        InputStream ExcelParaLeer = new FileInputStream(rutaExcel); 
+        InputStream ExcelParaLeer = new FileInputStream("C:/Users/Pablo/Desktop/prueba.xlsx"); 
         XSSFWorkbook wb = new XSSFWorkbook(ExcelParaLeer) ; 
         XSSFSheet sheet = wb.getSheetAt(0); 
         XSSFRow row ; 
@@ -23,7 +23,7 @@ public class modExcel {
         String contenidoCelda = cell.getStringCellValue(); 
         System.out.println("contenidoCelda : "+contenidoCelda);
         cell.setCellValue(valor); 
-        FileOutputStream arcSalida = new FileOutputStream(rutaExcel); 
+        FileOutputStream arcSalida = new FileOutputStream("C:/Users/Pablo/Desktop/prueba.xlsx"); 
         wb.write(arcSalida);
         arcSalida.close();
         System.out.println("Los cambios se han guardado con éxito"); 
