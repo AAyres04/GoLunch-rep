@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package golunch;
+
+import java.io.IOException;
+
 /**
  *
  * @author Zeiruos
@@ -15,7 +18,7 @@ public class GoLunch {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Menu menu = new Menu();
+        /*Menu menu = new Menu();
         menu.imprimirLista();
         menu.buscarNombre();
         menu.imprimirListaTrue();
@@ -25,5 +28,12 @@ public class GoLunch {
         menu.imprimirListaTrue();
         menu.buscarHoraF();
         menu.imprimirListaTrue();
+        */
+        LeerExcel ex = new LeerExcel();
+        try{
+            ex.readExcel("", "", "Hoja1");
+        }catch(IOException e){
+            //NADA
+        }
     }
 }

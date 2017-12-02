@@ -13,8 +13,10 @@ import java.util.Arrays;
  * @author Zeiruos
  */
 public abstract class Buscador {
+    
     protected String input;
     protected ArrayList<String> listaInput;
+    
     public Buscador(){
         this.listaInput = new ArrayList<>();
     }

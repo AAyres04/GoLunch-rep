@@ -18,23 +18,39 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author PCAMPOS
  */
 public class LeerExcel {
+    
+    private String data;
+    
+    public LeerExcel(){
+        this.data="";
+    }
+    
     public void readExcel(String rutaFile,String nombreFile, String sheetName ) throws IOException {
-        File file = new File ("C:/Users/Pablo/Desktop/prueba.xlsx"); 
+        File file = new File ("C:/Users/tonio/Desktop/Prueba.xlsx"); 
         FileInputStream inputStream = new FileInputStream(file);  
         XSSFWorkbook excelWorkbook ; 
         excelWorkbook = new XSSFWorkbook(inputStream);
         Sheet excelSheet = excelWorkbook.getSheet(sheetName); 
-        int filasCount = excelSheet.getLastRowNum()-excelSheet.getFirstRowNum(); 
-        
+        int filasCount = excelSheet.getLastRowNum()-excelSheet.getFirstRowNum();
+        int cellNum = 0;
         for (int i=0; i< filasCount+1 ; i++) { 
             Row filas;
             filas = excelSheet.getRow(i);
+            cellNum = filas.getLastCellNum(); 
             
-            for (int j=0 ; j < filas.getLastCellNum(); j++) { 
-                System.out.print(filas.getCell(j).getStringCellValue()+"|| ");
+            for (int j=0 ; j < cellNum; j++) { 
+                try{
+                    this.data += filas.getCell(j).getStringCellValue() + ";";
+                    //System.out.print(filas.getCell(j).getStringCellValue()+"|| ");
+                } catch (NullPointerException e){
+                    this.data += "EMPTYCELL;";
+                } 
             }
-            System.out.println();
+            this.data += "|"+"\n";
         }       
-        
+        System.out.println(data);
+    }
+    public String getData(){
+        return this.data;
     }
 }
