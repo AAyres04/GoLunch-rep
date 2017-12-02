@@ -46,7 +46,7 @@ public class LeerExcel {
                     this.data += "EMPTYCELL;";
                 } 
             }
-            this.data += "|"+"\n";
+            this.data += "%";
         }       
         System.out.println(data);
     }

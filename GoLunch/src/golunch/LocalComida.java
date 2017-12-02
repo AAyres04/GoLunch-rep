@@ -12,20 +12,16 @@ package golunch;
 public class LocalComida {
     private String nombre;
     private String direccion;
+    private String hora;
     private String horaInicio;
     private String horaFinal;
     private boolean localBuscado;
     private int idRest;
     public LocalComida(int id){
-        this.localBuscado = false;
-        this.idRest = id;
-    }
-    //TEST
-    public LocalComida(String test, int id){
-        this.nombre = test;
-        this.direccion = "testeo";
-        this.horaInicio = "10:00";
-        this.horaFinal = "20:10";
+        this.nombre = "";
+        this.direccion = "";
+        this.horaInicio = "";
+        this.horaFinal = "";
         this.localBuscado = false;
         this.idRest = id;
     }
@@ -43,19 +39,28 @@ public class LocalComida {
     public void setDireccion(String direccion){
         this.direccion = direccion;
     }
+    //Hora
+    public void setHora(String hora){
+        this.hora = hora;
+        formatHora();
+    }
+    private void formatHora(){
+        String[] splitHora;
+        String[] splitSeccion = this.hora.split(",");
+        for (int i = 0; i < splitSeccion.length; i++){
+            splitHora = splitSeccion[i].split("-");
+            this.horaInicio += splitHora[0] + ";";
+            this.horaFinal += splitHora[1] + ";";  
+        }
+        this.horaFinal = this.horaFinal.replace(".", "");
+    }
     //Hora Inicio
     public String getHoraInicio(){
         return this.horaInicio;
     }
-    public void setHoraInicio(String horaInicio){
-        this.horaInicio = horaInicio;
-    }
     //Hora Final
     public String getHoraFinal(){
         return this.horaFinal;
-    }
-    public void setHoraFinal(String horaFinal){
-        this.horaFinal = horaFinal;
     }
     //Check local buscado
     public boolean getLocalBuscado(){
