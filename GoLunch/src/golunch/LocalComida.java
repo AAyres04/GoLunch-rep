@@ -16,8 +16,9 @@ public class LocalComida {
     private String horaFinal;
     private boolean localBuscado;
     private int idRest;
-    public LocalComida(){
+    public LocalComida(int id){
         this.localBuscado = false;
+        this.idRest = id;
     }
     //TEST
     public LocalComida(String test, int id){

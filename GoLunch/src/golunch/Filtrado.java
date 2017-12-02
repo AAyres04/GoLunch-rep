@@ -6,16 +6,20 @@
 package golunch;
 
 import java.util.ArrayList;
+import java.io.IOException;
 
 /**
  *
  * @author Zeiruos
  */
 public class Filtrado {
+    
     private ArrayList<LocalComida> listaLocales;
-    private int lecturaExcel; //placeHolder
+    private LeerExcel lecturaExcel;
+    
     public Filtrado(){
         this.listaLocales = new ArrayList<>();
+        this.lecturaExcel = new LeerExcel();
     }
     public ArrayList<LocalComida> getListaLocales(){
         return this.listaLocales;
@@ -23,14 +27,31 @@ public class Filtrado {
     public void setListaLocales(ArrayList listaLocales){
         this.listaLocales = listaLocales;
     }
-    public LocalComida asignarDatos(int n){//parametro prueba
-        String test = "test" + n; 
-        LocalComida objLocal = new LocalComida(test, n);
+    public LocalComida asignarDatos(int id, String lineData){//parametro prueba
+        LocalComida objLocal = new LocalComida(id);
+        if (lineData.contains("!")){
+            
+        } else {
+            
+        }
         return objLocal;
     }
-    public void rellenarLista(){
-        for(int i = 0; i<3 ; i++){
-            this.listaLocales.add(asignarDatos(i));
+    public String[] recepcionDatos(){
+        String data;
+        String[] splitData;
+        try{
+            this.lecturaExcel.readExcel("", "", "Hoja1");
+        }catch(IOException e){
+            System.out.println("ERROR-READEXCEL");
+            System.exit(0);
+        }
+        data = this.lecturaExcel.getData();
+        splitData = data.split("|");
+        return splitData;
+    }
+    public void rellenarLista(String[] allData){
+        for(int i = 0; i < allData.length ; i++){
+            this.listaLocales.add(asignarDatos(i, allData[i]));
         }
     }
     public void limpiarListadoLocal(){

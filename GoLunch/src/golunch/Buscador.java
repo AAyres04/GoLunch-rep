@@ -13,8 +13,10 @@ import java.util.Arrays;
  * @author Zeiruos
  */
 public abstract class Buscador {
+    
     protected String input;
     protected ArrayList<String> listaInput;
+    
     public Buscador(){
         this.listaInput = new ArrayList<>();
     }
@@ -29,6 +31,7 @@ public abstract class Buscador {
         this.listaInput.addAll(Arrays.asList(splitInput));
     }
     public ArrayList getListaInput(){
+        int hola=2;
         return this.listaInput;
     }
     public abstract void compararInput(Filtrado objFiltrado);

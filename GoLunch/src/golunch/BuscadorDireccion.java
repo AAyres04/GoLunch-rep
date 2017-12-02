@@ -15,11 +15,13 @@ public class BuscadorDireccion extends Buscador {
     }
     @Override
     public void compararInput(Filtrado objFiltrado) {
+        String direccion = "";
         this.splitInput();
         if(objFiltrado.getListaLocales() != null){
-            for(int i=0;i<objFiltrado.getListaLocales().size(); i++){
-                for(int c=0; c<this.listaInput.size(); c++){
-                    if(objFiltrado.getListaLocales().get(i).getDireccion().contains(this.listaInput.get(c))){
+        for(int i = 0; i < objFiltrado.getListaLocales().size(); i++){
+            for(int c = 0; c < this.listaInput.size(); c++){
+                direccion = objFiltrado.getListaLocales().get(i).getDireccion();
+                if(direccion.contains(this.listaInput.get(c))){
                         System.out.println("YES!");
                         objFiltrado.getListaLocales().get(i).setLocalBuscado(true);
                     }
