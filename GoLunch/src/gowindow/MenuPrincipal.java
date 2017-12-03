@@ -42,14 +42,25 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
                             "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"};
  private String[] zonas = {"Todas","Ufro","Av.Alemana","Centro"};
  private JScrollPane Spanel;
-  private Object Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",false},
-      {"Mac","mall","4523525","9:00","22:00","Comida Rapida",false}};
+ /* private Object Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",false},
+      {"Mac","mall","4523525","9:00","22:00","Comida Rapida",false}};*/
+ private Object Columnas1[][];
 public MenuPrincipal(int id){
     super("GoLunch");
     Admin = new JButton("Administrador");
+        Columnas1= new Object[30][7];
+    for(int j = 0;j<30;j++){
+        Columnas1[j][0]="Pedro Juan Y Diego";
+        Columnas1[j][1]="Mall";
+        Columnas1[j][2]="3982091";
+        Columnas1[j][3]="19:00";
+        Columnas1[j][4]="19:00";
+        Columnas1[j][5]="Comida Rapida";
+        Columnas1[j][6]=false;
+    }
     DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
     tabla = new JTable(model){
-
+ 
             private static final long serialVersionUID = 1L;
 
             /*@Override
@@ -79,6 +90,8 @@ public MenuPrincipal(int id){
     return columnIndex == 6; //Or whatever column index you want to be editable
 }   
         };
+
+    
     panel = new JPanel();
     marcadores = new JButton("Marcadores");
     listado = new JButton("Listado");
@@ -132,7 +145,7 @@ public MenuPrincipal(int id){
     tipoComida.setBounds(10, 110, 150, 20);
     Admin.setBounds(190,110,150,20);
     buscar.setBounds(400, 110, 80, 20);
-    Spanel.setBounds(0, 200, 550,500 );
+    Spanel.setBounds(0, 200, 550,462 );
     
     panel.add(buscador);
     panel.add(listado);

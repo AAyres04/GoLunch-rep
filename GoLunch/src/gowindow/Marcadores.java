@@ -22,12 +22,22 @@ public class Marcadores extends JFrame {
  private JPanel panel;
  private int ID;
 private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
-  private Object Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",true},
-      {"Mac","mall","4523525","9:00","22:00","Comida Rapida",true}};
+  private Object Columnas1[][];/*={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",true},
+      {"Mac","mall","4523525","9:00","22:00","Comida Rapida",true}};*/
  private JTable tabla;
  private JScrollPane Spanel;
  public Marcadores(int id){
      super("GoLunch");
+             Columnas1= new Object[30][7];
+    for(int j = 0;j<30;j++){
+        Columnas1[j][0]="Pedro Juan Y Diego";
+        Columnas1[j][1]="Mall";
+        Columnas1[j][2]="3982091";
+        Columnas1[j][3]="19:00";
+        Columnas1[j][4]="19:00";
+        Columnas1[j][5]="Comida Rapida";
+        Columnas1[j][6]=true;
+    }
          DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
      tabla = new JTable(model){
          
@@ -70,6 +80,7 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
     setSize(555,690);
     setLocation(500,0);
     setResizable(false);
+    tabla.getTableHeader().setReorderingAllowed(false);
     panel.setLayout (null);
     buscador.setBounds(0, 0, 183, 20);
     marcadores.setBounds(366, 0, 184, 20);
