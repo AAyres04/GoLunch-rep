@@ -18,22 +18,10 @@ public class GoLunch {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        /*Menu menu = new Menu();
-        menu.imprimirLista();
+        Menu menu = new Menu();
         menu.buscarNombre();
         menu.imprimirListaTrue();
         menu.buscarDir();
         menu.imprimirListaTrue();
-        menu.buscarHoraI();
-        menu.imprimirListaTrue();
-        menu.buscarHoraF();
-        menu.imprimirListaTrue();
-        */
-        LeerExcel ex = new LeerExcel();
-        try{
-            ex.readExcel("", "", "Hoja1");
-        }catch(IOException e){
-            //NADA
-        }
     }
 }

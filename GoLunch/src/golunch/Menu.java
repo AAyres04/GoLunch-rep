@@ -13,19 +13,21 @@ import java.util.Scanner;
 public class Menu {
     private String input;
     private Filtrado objFiltrado;
-    private BuscadorNombre buscador1;
+    private BuscadorGamma master;
+    /*private BuscadorNombre buscador1;
     private BuscadorDireccion buscador2;
     private BuscadorHora buscador3;
-    private BuscadorHora buscador4;
+    private BuscadorHora buscador4;*/
     public Menu(){
         this.objFiltrado = new Filtrado();
-        this.buscador1 = new BuscadorNombre();
+        this.master = new BuscadorGamma();
+        /*this.buscador1 = new BuscadorNombre();
         this.buscador2 = new BuscadorDireccion();
         this.buscador3 = new BuscadorHora("inicio");
-        this.buscador4 = new BuscadorHora("final");
-        this.objFiltrado.rellenarLista();
+        this.buscador4 = new BuscadorHora("final");*/
+        this.objFiltrado.rellenarLista(this.objFiltrado.recepcionDatos());
     }
-    private boolean validarHora(){
+    /*private boolean validarHora(){
         boolean formato = false;
         //El formato de la hora debe ser 'NUM':'NUM'
         String[] split = this.input.split(":");
@@ -41,25 +43,25 @@ public class Menu {
             formato = true;
         }
         return formato;
-    }
+    }*/
     public void imprimirLista(){
-        for(int i = 0; i<3 ; i++){
+        for(int i = 0; i<this.objFiltrado.getListaLocales().size() ; i++){
             System.out.println(this.objFiltrado.getListaLocales().get(i));
         }
     }
     public void buscarNombre(){//TEST
         Scanner scan = new Scanner(System.in);
         this.input = scan.nextLine();
-        this.buscador1.setInput(this.input);
-        this.buscador1.compararInput(this.objFiltrado);
+        this.master.setInput(this.input);
+        this.master.compararNombre(this.objFiltrado);
     }
     public void buscarDir(){
         Scanner scan = new Scanner(System.in);
         this.input = scan.nextLine();
-        this.buscador2.setInput(this.input);
-        this.buscador2.compararInput(this.objFiltrado);
+        this.master.setInput(this.input);
+        this.master.compararDireccion(this.objFiltrado);
     }
-    public void buscarHoraI(){
+    /*public void buscarHoraI(){
         Scanner scan = new Scanner(System.in);
         this.input = scan.nextLine();
         if(validarHora()){
@@ -78,9 +80,9 @@ public class Menu {
         }else{
             System.out.println("Nope");
         }
-    }
+    }¨*/
     public void imprimirListaTrue(){//TEST
-        for(int i = 0; i<3 ; i++){
+        for(int i = 0; i<this.objFiltrado.getListaLocales().size() ; i++){
             if(this.objFiltrado.getListaLocales().get(i).getLocalBuscado()){
                 System.out.println(this.objFiltrado.getListaLocales().get(i));
             }

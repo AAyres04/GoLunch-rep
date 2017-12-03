@@ -21,21 +21,30 @@ public class Filtrado {
         this.listaLocales = new ArrayList<>();
         this.lecturaExcel = new LeerExcel();
     }
+    
     public ArrayList<LocalComida> getListaLocales(){
         return this.listaLocales;
     }
+    
     public void setListaLocales(ArrayList listaLocales){
         this.listaLocales = listaLocales;
     }
+    
     public LocalComida asignarDatos(int id, String lineData){//parametro prueba
         LocalComida objLocal = new LocalComida(id);
-        if (lineData.contains("!")){
-            
-        } else {
-            
+        String[] splitLineData;
+        System.out.println(lineData);
+        if (lineData.contains("!") || lineData.isEmpty()){
+            return null;
+        } else{
+            splitLineData = lineData.split(";");
+            objLocal.setNombre(splitLineData[1]);
+            objLocal.setDireccion(splitLineData[2]);
+            objLocal.setHora(splitLineData[3]);
         }
         return objLocal;
     }
+    
     public String[] recepcionDatos(){
         String data;
         String[] splitData;
@@ -46,14 +55,24 @@ public class Filtrado {
             System.exit(0);
         }
         data = this.lecturaExcel.getData();
-        splitData = data.split("|");
+        splitData = data.split("%");
+        for(int i=0; i<splitData.length;  i++){
+            System.out.println(splitData[i]);
+        }
         return splitData;
     }
+    
     public void rellenarLista(String[] allData){
+        LocalComida local;
         for(int i = 0; i < allData.length ; i++){
-            this.listaLocales.add(asignarDatos(i, allData[i]));
+            local = asignarDatos(i, allData[i]);
+            if (local != null){
+                this.listaLocales.add(local);
+                System.out.println(local);
+            }
         }
     }
+    
     public void limpiarListadoLocal(){
         for(int i = 0; i<this.listaLocales.size();i++){
             this.listaLocales.get(i).setLocalBuscado(false);
