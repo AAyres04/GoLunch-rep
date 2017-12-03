@@ -6,7 +6,7 @@
 package gowindow;
 
 /**
- *
+ *Ventana la cual registra y añade nuevo usuarios a un archivo txt.
  * @author Zeiruos
  */
 import javax.swing.*;
@@ -94,7 +94,7 @@ public class NewUser extends JFrame {
             int ID=1;
             File file = new File("userPass.txt");
             Scanner scan = new Scanner(file);;
-            Ultima =tail(file);
+            Ultima =LeerUltimaLineaDeTxt(file);
             ID= Integer.parseInt(Ultima)+1;
             FileWriter filewrite = new FileWriter(file, true);
             String usertxter = " ";
@@ -139,9 +139,14 @@ public class NewUser extends JFrame {
       }
       });
      
-        
+       
     }
-  public String tail( File file ) {
+  /**
+   * Metodo el cual regresa la Ultima linea de un archivo TxT
+   * @param file
+   * @return 
+   */
+  public String LeerUltimaLineaDeTxt( File file ) {
     RandomAccessFile fileHandler = null;
     try {
         fileHandler = new RandomAccessFile( file, "r" );

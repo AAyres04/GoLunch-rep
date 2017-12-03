@@ -11,7 +11,7 @@ import java.io.*;
 import java.util.*;
 import golunch.*;
 /**
- *
+ *Ventana la cual modifica datos del excel.Solamente puede ingresar el administrador del programa
  * @author Vicente
  */
 public class ModificarTabla  extends JFrame{

@@ -10,7 +10,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 /**
- *
+ *Ventana  para la administracion de datos.
  * @author Vicente
  */
 public class Admin  extends JFrame{

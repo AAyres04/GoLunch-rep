@@ -11,7 +11,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 /**
- *
+ *Ventana la cual imprime la lista completa.
  * @author Vicente
  */
 public class Listado extends JFrame {

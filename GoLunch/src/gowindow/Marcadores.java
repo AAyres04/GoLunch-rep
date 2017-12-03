@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.*;
 import javax.swing.table.*;
 /**
- *
+ *Ventana la cual imprime los marcadores seleccionados por el usuario.
  * @author Vicente
  */
 public class Marcadores extends JFrame {
@@ -85,8 +85,8 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
     setVisible(true);
     
     
-          listado.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+        listado.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
           dispose();
           new Listado(ID);
       }

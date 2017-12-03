@@ -12,7 +12,7 @@ import java.io.*;
 import java.util.*;
 
 /**
- *
+ *Ventana la cual da eleccion entre ir a el menu principal o a la ventana administrador.
  * @author Vicente
  */
 public class Eleccion extends JFrame {

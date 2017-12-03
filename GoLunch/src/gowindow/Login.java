@@ -6,7 +6,7 @@
 package gowindow;
 
 /**
- *
+ *Ventana de inicio de sesion de usuario.
  * @author Vicente
  */
 import javax.swing.*;
@@ -158,7 +158,7 @@ public class Login extends JFrame {
       public void actionPerformed(ActionEvent e) {
         NewUser user = new NewUser();
         dispose();
-
+        
       }
     });
      Salir.addActionListener(new ActionListener() {
