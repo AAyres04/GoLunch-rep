@@ -33,7 +33,8 @@ public class Admin  extends JFrame{
     private JLabel Adm;
     private JDialog diag;
     private JButton ok;
-    public  Admin(){
+    int ID;
+    public  Admin(int id){
        super("Admin");
         Object[] options = new Object[] {};
         Tabla = new JTable(Columnas1,NombreColumnas);
@@ -45,6 +46,7 @@ public class Admin  extends JFrame{
         agregar = new JButton ("Agregar");
         eliminar = new JButton("Eliminar");
         ok = new JButton("OK");
+        ID = id;
         eliminar1 = new JOptionPane("Elige Numero de fila",JOptionPane.QUESTION_MESSAGE,
                                         JOptionPane.DEFAULT_OPTION,
                                         null,options, null);
@@ -62,7 +64,7 @@ public class Admin  extends JFrame{
        Tabla.setEnabled(false);
        Tabla.getTableHeader().setReorderingAllowed(false);
         
-        setSize(845,400);
+        setSize(835,390);
         setLocation(300,100);
         setResizable(false);
         panel.setLayout (null); 
@@ -102,19 +104,19 @@ public class Admin  extends JFrame{
       GoLunch.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           dispose();
-          new MenuPrincipal();
+          new MenuPrincipal(ID);
       }
       });
       agregar.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           dispose();
-          new Agregar();
+          new Agregar(ID);
       }
       });
       modificar.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new ModificarTabla();
+          new ModificarTabla(ID);
       }
       });
      eliminar.addActionListener(new ActionListener() {

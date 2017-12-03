@@ -19,14 +19,15 @@ public class Marcadores extends JFrame {
  private JButton listado;
  private JButton buscador;
  private JPanel panel;
- public Marcadores(){
+ private int ID;
+ public Marcadores(int id){
      super("GoLunch");
     panel = new JPanel();
     marcadores = new JButton("Marcadores");
     listado = new JButton("Listado");
     buscador= new JButton("Buscador");
-    
-    setSize(555,700);
+    ID = id;
+    setSize(555,690);
     setLocation(500,0);
     setResizable(false);
     panel.setLayout (null);
@@ -47,7 +48,7 @@ public class Marcadores extends JFrame {
           listado.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new Listado();
+          new Listado(ID);
       }
       });
           
@@ -55,7 +56,7 @@ public class Marcadores extends JFrame {
       buscador.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new MenuPrincipal();
+          new MenuPrincipal(ID);
       }
       });
  }

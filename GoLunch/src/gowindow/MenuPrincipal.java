@@ -16,7 +16,9 @@ import javax.swing.table.*;
  * @author Vicente
  */
 public class MenuPrincipal extends JFrame {
- private JTable tabla; 
+ private JTable tabla;
+ private Login Login;
+ private int ID;
  private JPanel panel;
  private JButton marcadores;
  private JButton listado;
@@ -27,10 +29,10 @@ public class MenuPrincipal extends JFrame {
  private JLabel horaInicioL;
  private JLabel horaFinalL;
  private JLabel tipoComidaL;
- private JLabel zonaL;
  private JTextField nombreL;
  private JTextField direccion;
  private JComboBox horaInicio;
+ private JButton Admin; 
  private JComboBox horaFinal;
  private JComboBox tipoComida;
 private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
@@ -39,12 +41,12 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
  private String[] hora = {"00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00",
                             "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"};
  private String[] zonas = {"Todas","Ufro","Av.Alemana","Centro"};
- private JComboBox zona;
  private JScrollPane Spanel;
   private Object Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",false},
       {"Mac","mall","4523525","9:00","22:00","Comida Rapida",false}};
-public MenuPrincipal(){
+public MenuPrincipal(int id){
     super("GoLunch");
+    Admin = new JButton("Administrador");
     DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
     tabla = new JTable(model){
 
@@ -77,7 +79,6 @@ public MenuPrincipal(){
     return columnIndex == 6; //Or whatever column index you want to be editable
 }   
         };
-    
     panel = new JPanel();
     marcadores = new JButton("Marcadores");
     listado = new JButton("Listado");
@@ -88,9 +89,7 @@ public MenuPrincipal(){
     horaInicioL=new JLabel("H.inicial");
     horaFinalL=new JLabel("H. Final");
     tipoComidaL= new JLabel("Tipo de comida");
-    zonaL=new JLabel("Zonas");
     tipoComida= new JComboBox(tipos);
-    zona= new JComboBox(zonas);
     nombreL= new JTextField("");
     direccion=  new JTextField("");
     horaInicio =  new JComboBox(hora);
@@ -106,12 +105,16 @@ public MenuPrincipal(){
            Object hf = Columnas1[i][4];
            Object ti = Columnas1[i][5];
    }
-
-
-
+ 
+   ID = id;
+  if (ID!=1){
+      Admin.setVisible(false);
+  }else{
+      Admin.setVisible(true);
+  }
     tabla.getTableHeader().setReorderingAllowed(false);
     setResizable(false);
-    setSize(600,700);
+    setSize(590,690);
     setLocation(500,0);
     panel.setLayout (null);
     buscador.setBounds(0, 0, 183, 20);
@@ -127,8 +130,7 @@ public MenuPrincipal(){
     horaFinal.setBounds(420, 60, 80, 20);
     tipoComidaL.setBounds(30, 90, 150, 20);
     tipoComida.setBounds(10, 110, 150, 20);
-    zonaL.setBounds(210, 90, 150, 20);
-    zona.setBounds(190,110,150,20);
+    Admin.setBounds(190,110,150,20);
     buscar.setBounds(400, 110, 80, 20);
     Spanel.setBounds(0, 200, 550,500 );
     
@@ -145,8 +147,7 @@ public MenuPrincipal(){
     panel.add(horaFinal);
     panel.add(tipoComidaL);
     panel.add(tipoComida);
-    panel.add(zonaL);
-    panel.add(zona);
+    panel.add(Admin);
     panel.add(buscar);
     panel.add(Spanel);
     
@@ -158,13 +159,13 @@ public MenuPrincipal(){
          marcadores.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new Marcadores();
+          new Marcadores(ID);
       }
       });
       listado.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new Listado();
+          new Listado(ID);
       }
       });
     tabla.addMouseListener(new java.awt.event.MouseAdapter() {

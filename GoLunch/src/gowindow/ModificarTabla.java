@@ -32,7 +32,9 @@ public class ModificarTabla  extends JFrame{
     private JLabel N;
     static ArrayList<LocalComida> Locales;
     static Filtrado Lista;
-    public  ModificarTabla(){
+    private int ID;
+    public  ModificarTabla(int id){
+        ID= id;
         panel = new JPanel();
         NF = new JComboBox();
         Spanel = new JScrollPane(Tabla);
@@ -43,7 +45,7 @@ public class ModificarTabla  extends JFrame{
         value = new JTextField ("");
         N = new JLabel ("Numero de fila:");
         Edicion = new JLabel("Nuevo Valor:");
-        Locales = Lista.getListaLocales();
+ /*       Locales = Lista.getListaLocales();
         Columnas1 = new String[Locales.size()][6];
         for(int j = 0;j < Locales.size();j++ ){
             Columnas1[0][j]=Locales.get(j).getNombre();
@@ -53,9 +55,9 @@ public class ModificarTabla  extends JFrame{
             Columnas1[4][j]=Locales.get(j).getHoraFinal();
             Columnas1[5][j]=Locales.get(j).getCategorias();
            
-        }
+        }*/
         Tabla = new JTable(Columnas1,NombreColumnas);
-        setSize(900,400);
+        setSize(890,390);
         setLocation(300,100);
         setResizable(false);
         panel.setLayout (null); 
@@ -92,7 +94,7 @@ public class ModificarTabla  extends JFrame{
         volver.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           dispose();
-          new Admin();
+          new Admin(ID);
       }
       });
         

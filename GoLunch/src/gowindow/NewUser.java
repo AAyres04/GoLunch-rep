@@ -30,7 +30,7 @@ public class NewUser extends JFrame {
 
 
   public NewUser(){
-    super("Registration");
+    super("Registro");
 
     create = new JButton("Crear");
     newUserPanel = new JPanel();
@@ -43,7 +43,7 @@ public class NewUser extends JFrame {
     
 
 
-    setSize(300,200);
+    setSize(290,190);
     setLocation(500,280);
     newUserPanel.setLayout (null); 
     creacion.setBounds(100, 10, 100, 20);

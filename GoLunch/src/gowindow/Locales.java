@@ -29,7 +29,7 @@ public class Locales extends JPanel {
         HoraF = new JLabel();
         Tipo = new JLabel();
         
-        setSize(500,100);
+        setSize(490,90);
         setVisible(true);
 
         

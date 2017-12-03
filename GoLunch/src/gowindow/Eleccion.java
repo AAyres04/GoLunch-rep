@@ -20,15 +20,15 @@ public class Eleccion extends JFrame {
     private JButton principal;
     private JLabel ingreso;
     private JPanel panel;
-    
-    public Eleccion(){
+    int ID;
+    public Eleccion(int id){
         super("Ingreso Admin");
         admin= new JButton("Administrador");
         principal=new JButton("Usuario Normal");
         ingreso = new JLabel("¿Como desea ingresar?");
         panel= new JPanel();
-        
-        setSize(300,200);
+        ID = id;
+        setSize(290,190);
         setLocation(500,280);
         setResizable(false);
         panel.setLayout (null); 
@@ -48,14 +48,14 @@ public class Eleccion extends JFrame {
         admin.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new Admin();
+          new Admin(ID);
          
       }
       });
         principal.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          MenuPrincipal men = new MenuPrincipal();
+          MenuPrincipal men = new MenuPrincipal(ID);
       }
       });
     }

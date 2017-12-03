@@ -19,14 +19,14 @@ public class Listado extends JFrame {
  private JButton listado;
  private JButton buscador;
  private JPanel panel;
-
- public Listado(){
+ private int ID ; 
+ public Listado(int id){
      super("GoLunch");
     panel = new JPanel();
     marcadores = new JButton("Marcadores");
     listado = new JButton("Listado");
     buscador= new JButton("Buscador");
-    
+    ID = id;
     setSize(555,700);
     setLocation(500,0);
     setResizable(false);
@@ -47,14 +47,14 @@ public class Listado extends JFrame {
       marcadores.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new Marcadores();
+          new Marcadores(ID);
       }
       });
       
       buscador.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          new MenuPrincipal();
+          new MenuPrincipal(ID);
       }
       });
  }

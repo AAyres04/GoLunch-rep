@@ -16,7 +16,7 @@ import java.io.*;
 import java.util.*;
 
 public class Login extends JFrame {
-  private int s=0;
+  private int s=0,ID;
   private JButton blogin;
   private JPanel loginpanel;
   private JTextField txuser;
@@ -27,8 +27,8 @@ public class Login extends JFrame {
   private JButton Salir;
 
   public Login(){
-    super("Login Autentification");
-
+    super("Iniciar Sesion");
+    ID = 1;
     blogin = new JButton("Iniciar sesion");
     loginpanel = new JPanel();
     txuser = new JTextField(15);
@@ -38,7 +38,7 @@ public class Login extends JFrame {
     password = new JLabel("Contraseña:");
     Salir = new JButton("Salir");
 
-    setSize(350,200);
+    setSize(340,190);
     setLocation(500,280);
     setResizable(false);
     loginpanel.setLayout (null); 
@@ -85,8 +85,7 @@ public class Login extends JFrame {
     blogin.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         try {
-            String IDS="";
-            int ID=1;
+          String IDS="";
           File file = new File("userPass.txt");
           Scanner scan = new Scanner(file);
           String line = null;
@@ -101,9 +100,13 @@ public class Login extends JFrame {
             usertxt = scan.nextLine();
             passtxt = scan.nextLine();
             IDS=scan.nextLine();
-            if(puname.equals(usertxt) && ppaswd.equals(passtxt)) {
+            if(puname.equals("User") && ppaswd.equals("Admin")){
+                s=3;
+
+            }if(puname.equals(usertxt) && ppaswd.equals(passtxt)) {
                 s=1;
                 System.out.println(IDS);
+                ID = Integer.parseInt(IDS);
            /* MainMenu menu =new MainMenu();
             dispose();
             break;*/
@@ -125,16 +128,20 @@ public class Login extends JFrame {
               System.out.println(ID);
                  dispose(); 
                JOptionPane.showMessageDialog(null,"Has iniciado sesion correctamente.");
-                MenuPrincipal menu =new MenuPrincipal();
+                MenuPrincipal menu =new MenuPrincipal(ID);
              
             } else if(s==2){
-              JOptionPane.showMessageDialog(null,"Please insert Username and Password");
+                JOptionPane.showMessageDialog(null,"Porfavor inserte Usuario");
               s=0;
             } else if (s==0){
-                JOptionPane.showMessageDialog(null,"Wrong Username / Password");
+                JOptionPane.showMessageDialog(null,"Usuario/Contraseña Equivocada");
                 txuser.setText("");
                 pass.setText("");
                 txuser.requestFocus();
+            }else if (s==3){
+                dispose();
+            Eleccion eleccion = new Eleccion(ID);
+            JOptionPane.showMessageDialog(null,"Usted a ingresad como Administrador");
             }
 
 
@@ -162,6 +169,5 @@ public class Login extends JFrame {
       });
      
   } 
-  
 
 }

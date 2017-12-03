@@ -29,10 +29,11 @@ public class Agregar extends JFrame{
     private JButton Agregar;
     private JPanel Panel;
     private JButton volver;
+    int ID;
     static ArrayList<LocalComida> Locales;
     public static Filtrado Lista;
     static LocalComida Local;
-    public Agregar(){
+    public Agregar(int id){
         super("Agregar Local");
         Locales = new ArrayList<LocalComida>();
         direccion = new JLabel("Direccion:");
@@ -52,9 +53,10 @@ public class Agregar extends JFrame{
         Agregar = new JButton("Agregar");
         Panel = new JPanel();
         volver = new JButton("Volver");
+        ID = id;
        // Locales = Lista.getListaLocales();
              Panel.setLayout(null);
-     setSize(300,360);
+     setSize(290,350);
      setLocation(500,280);
      setResizable(false);
 
@@ -99,7 +101,7 @@ public class Agregar extends JFrame{
            volver.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
           dispose();
-          new Admin();
+          new Admin(ID);
       }
       });
            
