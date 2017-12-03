@@ -114,7 +114,7 @@ public MenuPrincipal(int id){
   }
     tabla.getTableHeader().setReorderingAllowed(false);
     setResizable(false);
-    setSize(590,690);
+    setSize(555,690);
     setLocation(500,0);
     panel.setLayout (null);
     buscador.setBounds(0, 0, 183, 20);
@@ -178,6 +178,12 @@ public MenuPrincipal(int id){
         }
     
 });
+          Admin.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+          dispose();
+          new Admin(ID);
+      }
+      });
 } 
     
     

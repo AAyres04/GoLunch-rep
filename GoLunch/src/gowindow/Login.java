@@ -141,7 +141,7 @@ public class Login extends JFrame {
             }else if (s==3){
                 dispose();
             Eleccion eleccion = new Eleccion(ID);
-            JOptionPane.showMessageDialog(null,"Usted a ingresad como Administrador");
+            JOptionPane.showMessageDialog(null,"Usted a ingresado como Administrador");
             }
 
 
