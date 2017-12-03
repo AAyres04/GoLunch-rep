@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import golunch.*;
 /**
  *
  * @author Vicente
@@ -17,7 +18,7 @@ public class ModificarTabla  extends JFrame{
     private JTable Tabla;
     private String NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Tipo"};
     private ArrayList<String> Columnas;
-    private String Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida"},{"Mac","mall","4523525","9:00","22:00","Comida Rapida"}};
+    private String Columnas1[][];
     private JPanel panel;
     private JScrollPane Spanel;
     private JButton volver;
@@ -29,10 +30,10 @@ public class ModificarTabla  extends JFrame{
     private JLabel Edicion;
     private JTextField value;
     private JLabel N;
-    
+    static ArrayList<LocalComida> Locales;
+    static Filtrado Lista;
     public  ModificarTabla(){
-        
-        Tabla = new JTable(Columnas1,NombreColumnas);
+        Locales = new ArrayList<LocalComida>();
         panel = new JPanel();
         NF = new JComboBox();
         Spanel = new JScrollPane(Tabla);
@@ -43,9 +44,18 @@ public class ModificarTabla  extends JFrame{
         value = new JTextField ("");
         N = new JLabel ("Numero de fila:");
         Edicion = new JLabel("Nuevo Valor:");
-        
-        NumeroFilas = Columnas1.length;
-        
+        Locales = Lista.getListaLocales();
+        Columnas1 = new String[Locales.size()][6];
+        for(int j = 0;j < Locales.size();j++ ){
+            Columnas1[0][j]=Locales.get(j).getNombre();
+            Columnas1[1][j]=Locales.get(j).getDireccion();
+            Columnas1[2][j]=Locales.get(j).getTelefono();
+            Columnas1[3][j]=Locales.get(j).getHoraInicio();
+            Columnas1[4][j]=Locales.get(j).getHoraFinal();
+            Columnas1[5][j]=Locales.get(j).getCategorias();
+           
+        }
+        Tabla = new JTable(Columnas1,NombreColumnas);
         setSize(900,400);
         setLocation(300,100);
         panel.setLayout (null); 
@@ -101,6 +111,20 @@ public class ModificarTabla  extends JFrame{
               }
               Columnas1[Fil][Colum] = value.getText();
               Tabla.setValueAt(Columnas1[Fil][Colum], Fil, Colum);
+              if (Colum == 0){
+                  Locales.get(Fil).setNombre(value.getText());
+              }else if (Colum == 1 ){
+                  Locales.get(Fil).setDireccion(value.getText());
+              }else if (Colum == 2 ){
+                  Locales.get(Fil).setTelefono(value.getText());
+              }else if(Colum == 3){
+                  Locales.get(Fil).setHoraInicio(value.getText());
+              }else if(Colum == 4){
+                  Locales.get(Fil).setHoraFinal(value.getText());
+              }else if(Colum == 5){
+                  Locales.get(Fil).setCategorias(value.getText());
+              }
+              Lista.setListaLocales(Locales);
       }
       });
     }
