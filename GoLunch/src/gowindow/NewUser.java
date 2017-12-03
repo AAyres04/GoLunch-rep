@@ -116,7 +116,7 @@ public class NewUser extends JFrame {
             JOptionPane.showMessageDialog(null,"Porfavor inserte usuario y contraseña");
             }
         else {
-            filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+ "\r\n");
+            filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+"\r\n");
             filewrite.close();
             JOptionPane.showMessageDialog(null,"Tu cuenta se ha creado.");
             dispose();

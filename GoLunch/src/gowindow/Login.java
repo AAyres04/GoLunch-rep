@@ -102,8 +102,7 @@ public class Login extends JFrame {
             IDS=scan.nextLine();
             if(puname.equals(usertxt) && ppaswd.equals(passtxt)) {
                 s=1;
-                ID=Integer.parseInt(IDS);
-                
+                System.out.println(IDS.getClass().getName());
            /* MainMenu menu =new MainMenu();
             dispose();
             break;*/
@@ -125,7 +124,7 @@ public class Login extends JFrame {
               System.out.println(ID);
                  dispose(); 
                JOptionPane.showMessageDialog(null,"Has iniciado sesion correctamente.");
-                MainMenu menu =new MainMenu();
+                MenuPrincipal menu =new MenuPrincipal();
              
             } else if(s==2){
               JOptionPane.showMessageDialog(null,"Please insert Username and Password");

@@ -26,7 +26,7 @@ public class LeerExcel {
     }
     
     public void readExcel(String rutaFile,String nombreFile, String sheetName ) throws IOException {
-        File file = new File ("C:/Users/tonio/Desktop/Prueba.xlsx"); 
+        File file = new File ("C:/Users/Vicente.Vicho-pc/Desktop/Prueba.xlsx"); 
         FileInputStream inputStream = new FileInputStream(file);  
         XSSFWorkbook excelWorkbook ; 
         excelWorkbook = new XSSFWorkbook(inputStream);

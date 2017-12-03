@@ -47,13 +47,14 @@ public class Eleccion extends JFrame {
         admin.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
+          new Admin();
          
       }
       });
         principal.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
-          //MainMenu men = new MainMenu();
+          MenuPrincipal men = new MenuPrincipal();
       }
       });
     }
