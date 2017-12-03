@@ -56,6 +56,7 @@ public class Agregar extends JFrame{
              Panel.setLayout(null);
      setSize(300,360);
      setLocation(500,280);
+     setResizable(false);
 
      
         nombre.setBounds(10, 20, 150, 20);

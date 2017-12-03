@@ -40,6 +40,7 @@ public class Login extends JFrame {
 
     setSize(350,200);
     setLocation(500,280);
+    setResizable(false);
     loginpanel.setLayout (null); 
 
 
@@ -102,7 +103,7 @@ public class Login extends JFrame {
             IDS=scan.nextLine();
             if(puname.equals(usertxt) && ppaswd.equals(passtxt)) {
                 s=1;
-                System.out.println(IDS.getClass().getName());
+                System.out.println(IDS);
            /* MainMenu menu =new MainMenu();
             dispose();
             break;*/

@@ -14,6 +14,7 @@ import java.util.*;
  * @author Vicente
  */
 public class Admin  extends JFrame{
+
     private JTable Tabla;
     private String NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Tipo"};
     private ArrayList<String> Columnas;
@@ -33,6 +34,7 @@ public class Admin  extends JFrame{
     private JDialog diag;
     private JButton ok;
     public  Admin(){
+       super("Admin");
         Object[] options = new Object[] {};
         Tabla = new JTable(Columnas1,NombreColumnas);
         panel = new JPanel();
@@ -62,6 +64,7 @@ public class Admin  extends JFrame{
         
         setSize(845,400);
         setLocation(300,100);
+        setResizable(false);
         panel.setLayout (null); 
         for(int i = 0;i < NumeroFilas;i++){
            NF.addItem(i+1);

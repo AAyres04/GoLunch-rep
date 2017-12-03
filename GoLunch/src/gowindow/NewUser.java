@@ -66,6 +66,7 @@ public class NewUser extends JFrame {
     getContentPane().add(newUserPanel);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
+    setResizable(false);
 
     Writer writer = null;
     File check = new File("userPass.txt");

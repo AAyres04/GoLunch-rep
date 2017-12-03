@@ -22,7 +22,7 @@ public class Eleccion extends JFrame {
     private JPanel panel;
     
     public Eleccion(){
-        
+        super("Ingreso Admin");
         admin= new JButton("Administrador");
         principal=new JButton("Usuario Normal");
         ingreso = new JLabel("¿Como desea ingresar?");
@@ -30,6 +30,7 @@ public class Eleccion extends JFrame {
         
         setSize(300,200);
         setLocation(500,280);
+        setResizable(false);
         panel.setLayout (null); 
         
         admin.setBounds(150, 80, 130, 20);

@@ -16,7 +16,7 @@ import golunch.*;
  */
 public class ModificarTabla  extends JFrame{
     private JTable Tabla;
-    private String NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Tipo"};
+    private String NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias"};
     private ArrayList<String> Columnas;
     private String Columnas1[][];
     private JPanel panel;
@@ -33,7 +33,6 @@ public class ModificarTabla  extends JFrame{
     static ArrayList<LocalComida> Locales;
     static Filtrado Lista;
     public  ModificarTabla(){
-        Locales = new ArrayList<LocalComida>();
         panel = new JPanel();
         NF = new JComboBox();
         Spanel = new JScrollPane(Tabla);
@@ -58,6 +57,7 @@ public class ModificarTabla  extends JFrame{
         Tabla = new JTable(Columnas1,NombreColumnas);
         setSize(900,400);
         setLocation(300,100);
+        setResizable(false);
         panel.setLayout (null); 
         for(int i = 0;i < NumeroFilas;i++){
            NF.addItem(i+1);
@@ -103,29 +103,33 @@ public class ModificarTabla  extends JFrame{
               int Fil = Integer.parseInt(Fila)-1;
               int Colum =0;
               String NombreCat = "";
-              for (int i = 0 ;i< NombreColumnas.length;i++ ){
-                  NombreCat = NombreColumnas[i];
-              if(Categoria.equals(NombreCat)){
-                  Colum = i;
+              if (!value.getText().equals("")){
+                for (int i = 0 ;i< NombreColumnas.length;i++ ){
+                     NombreCat = NombreColumnas[i];
+                if(Categoria.equals(NombreCat)){
+                    Colum = i;
+                }
+                }
+                Columnas1[Fil][Colum] = value.getText();
+                Tabla.setValueAt(Columnas1[Fil][Colum], Fil, Colum);
+                if (Colum == 0){
+                     Locales.get(Fil).setNombre(value.getText());
+                 }else if (Colum == 1 ){
+                     Locales.get(Fil).setDireccion(value.getText());
+                 }else if (Colum == 2 ){
+                    Locales.get(Fil).setTelefono(value.getText());
+                }else if(Colum == 3){
+                     Locales.get(Fil).setHoraInicio(value.getText());
+                }else if(Colum == 4){
+                     Locales.get(Fil).setHoraFinal(value.getText());
+                }else if(Colum == 5){
+                     Locales.get(Fil).setCategorias(value.getText());
+                }
+                 Lista.setListaLocales(Locales);
+         }else{
+              JOptionPane.showMessageDialog(null, "No se ingreso nombre");
               }
-              }
-              Columnas1[Fil][Colum] = value.getText();
-              Tabla.setValueAt(Columnas1[Fil][Colum], Fil, Colum);
-              if (Colum == 0){
-                  Locales.get(Fil).setNombre(value.getText());
-              }else if (Colum == 1 ){
-                  Locales.get(Fil).setDireccion(value.getText());
-              }else if (Colum == 2 ){
-                  Locales.get(Fil).setTelefono(value.getText());
-              }else if(Colum == 3){
-                  Locales.get(Fil).setHoraInicio(value.getText());
-              }else if(Colum == 4){
-                  Locales.get(Fil).setHoraFinal(value.getText());
-              }else if(Colum == 5){
-                  Locales.get(Fil).setCategorias(value.getText());
-              }
-              Lista.setListaLocales(Locales);
-      }
+        }
       });
     }
     

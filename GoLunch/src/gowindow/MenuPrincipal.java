@@ -9,12 +9,14 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import golunch.*;
+import javax.swing.table.*;
 /**
  *
  * @author Vicente
  */
 public class MenuPrincipal extends JFrame {
- 
+ private JTable tabla; 
  private JPanel panel;
  private JButton marcadores;
  private JButton listado;
@@ -28,19 +30,54 @@ public class MenuPrincipal extends JFrame {
  private JLabel zonaL;
  private JTextField nombreL;
  private JTextField direccion;
- private JTextField horaInicio;
- private JTextField horaFinal;
+ private JComboBox horaInicio;
+ private JComboBox horaFinal;
  private JComboBox tipoComida;
+private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
  private String[] tipos = {"Todas","Picada","Sushi","China","Italiana",
                           "Peruana","Parrilla","Comida Rapida"};
+ private String[] hora = {"00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00",
+                            "13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00","24:00"};
  private String[] zonas = {"Todas","Ufro","Av.Alemana","Centro"};
  private JComboBox zona;
- static ArrayList<JButton> Locales;
  private JScrollPane Spanel;
- static JButton local;
-  private String Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida"},
-      {"Mac","mall","4523525","9:00","22:00","Comida Rapida"}};
+  private Object Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",false},
+      {"Mac","mall","4523525","9:00","22:00","Comida Rapida",false}};
 public MenuPrincipal(){
+    super("GoLunch");
+    DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
+    tabla = new JTable(model){
+
+            private static final long serialVersionUID = 1L;
+
+            /*@Override
+            public Class getColumnClass(int column) {
+            return getValueAt(0, column).getClass();
+            }*/
+            @Override
+            public Class getColumnClass(int column) {
+                switch (column) {
+                    case 0:
+                        return String.class;
+                    case 1:
+                        return String.class;
+                    case 2:
+                        return String.class;
+                    case 3:
+                        return String.class;
+                    case 4:
+                        return String.class;
+                    case 5:
+                        return String.class;
+                    default:
+                        return Boolean.class;
+                }
+            }
+            public boolean isCellEditable(int rowIndex, int columnIndex){
+    return columnIndex == 6; //Or whatever column index you want to be editable
+}   
+        };
+    
     panel = new JPanel();
     marcadores = new JButton("Marcadores");
     listado = new JButton("Listado");
@@ -56,28 +93,25 @@ public MenuPrincipal(){
     zona= new JComboBox(zonas);
     nombreL= new JTextField("");
     direccion=  new JTextField("");
-    horaInicio =  new JTextField("");
-   horaFinal =  new JTextField("");
+    horaInicio =  new JComboBox(hora);
+   horaFinal =  new JComboBox(hora);
    Container cont = new Container();
-   
-   Locales = new ArrayList<JButton>();
-   Spanel = new JScrollPane();
+   Spanel = new JScrollPane(tabla);
     System.out.println(Columnas1.length);
    for(int i = 0 ; i < Columnas1.length;i++){
-           String n = Columnas1[i][0];
-           String d = Columnas1[i][1];
-           String te  = Columnas1[i][2];
-           String hi = Columnas1[i][3];
-           String hf = Columnas1[i][4];
-           String ti = Columnas1[i][5];
-           local  = new JButton(n+"/t/t/t"+ti+"/n"+d+"/t"+te+"/t"+hi+"/t"+hf);
-           Locales.add(local);
-           Spanel.add(Locales.get(i));
+           Object n = Columnas1[i][0];
+           Object d = Columnas1[i][1];
+           Object te  = Columnas1[i][2];
+           Object hi = Columnas1[i][3];
+           Object hf = Columnas1[i][4];
+           Object ti = Columnas1[i][5];
    }
-Spanel.setLayout(null);
 
-   
-    setSize(550,700);
+
+
+    tabla.getTableHeader().setReorderingAllowed(false);
+    setResizable(false);
+    setSize(600,700);
     setLocation(500,0);
     panel.setLayout (null);
     buscador.setBounds(0, 0, 183, 20);
@@ -120,6 +154,29 @@ Spanel.setLayout(null);
     getContentPane().add(panel);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
+    
+         marcadores.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+          dispose();
+          new Marcadores();
+      }
+      });
+      listado.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+          dispose();
+          new Listado();
+      }
+      });
+    tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        int row = tabla.rowAtPoint(evt.getPoint());
+        int col = tabla.columnAtPoint(evt.getPoint());
+        System.out.println(row);
+        System.out.println(col);
+        }
+    
+});
 } 
     
     
