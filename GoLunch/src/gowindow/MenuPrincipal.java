@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import java.lang.*;
 import golunch.*;
 import javax.swing.table.*;
 /**
@@ -45,6 +46,7 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
  /* private Object Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",false},
       {"Mac","mall","4523525","9:00","22:00","Comida Rapida",false}};*/
  private Object Columnas1[][];
+ private int s = 0 ;
 public MenuPrincipal(int id){
     super("GoLunch");
     Admin = new JButton("Administrador");
@@ -169,6 +171,24 @@ public MenuPrincipal(int id){
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     
+    
+    Writer writer = null;
+    File check = new File("Marcadores"+Integer.toString(ID)+".txt");
+    if(check.exists() ){
+
+      //Checks if the file exists. will not add anything if the file does exist.
+    }else{
+      try{
+        File texting = new File("Marcadores"+Integer.toString(ID)+".txt");
+        writer = new BufferedWriter(new FileWriter(texting));
+        writer.write("message");
+
+      }catch(IOException e){
+        e.printStackTrace();
+        
+      }
+    }
+    
          marcadores.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
@@ -184,10 +204,55 @@ public MenuPrincipal(int id){
     tabla.addMouseListener(new java.awt.event.MouseAdapter() {
     @Override
     public void mouseClicked(java.awt.event.MouseEvent evt) {
-        int row = tabla.rowAtPoint(evt.getPoint());
-        int col = tabla.columnAtPoint(evt.getPoint());
-        System.out.println(row);
-        System.out.println(col);
+        try{
+            int row = tabla.rowAtPoint(evt.getPoint());
+            int col = tabla.columnAtPoint(evt.getPoint());
+            System.out.println(row);
+            System.out.println(col);
+            String Fila;
+            String Marca = Columnas1[row][col].toString();
+            System.out.println(Marca);
+            File file = new File("Marcadores"+Integer.toString(ID)+".txt");
+            String IDLocal = " ";
+            Fila = Integer.toString(row);
+            if (col == 6){
+            if(!Marca.equals("true")){
+            FileWriter filewrite = new FileWriter(file, true);    
+            Scanner scan = new Scanner(file); 
+            while (scan.hasNext()) {
+            IDLocal = scan.nextLine();
+                System.out.println(Fila);
+                System.out.println(IDLocal);
+            if (Fila.equals(IDLocal)){
+                s=1;
+
+                break;
+            }else{
+                s=2;
+            }
+            
+            }
+            if (s==1){
+                scan.close();
+            }else{
+                filewrite.write(Fila+"\r\n"); 
+                filewrite.close();
+                scan.close();
+               
+            }
+            Columnas1[row][col]=true;
+            }else{
+                
+                removerLinea("Marcadores"+Integer.toString(ID)+".txt",Fila);
+                Columnas1[row][col]=false;
+            }
+            }
+            
+        }catch(Exception e){
+            
+        }
+
+ 
         }
     
 });
@@ -197,7 +262,41 @@ public MenuPrincipal(int id){
           new Admin(ID);
       }
       });
+          
+         
 } 
-    
-    
+    /**
+     *  Remueve una linea especifica dentro de un archivo txt.
+     * @param Archivo
+     * @param Borrar 
+     */
+     public static void removerLinea(String Archivo,String Borrar){
+         String tempfile = "temp.txt";
+         File oldFile = new File(Archivo);
+         File newFile = new File(tempfile);
+         String Local;
+         
+         try{
+             FileWriter fw = new FileWriter(tempfile,true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter pw = new PrintWriter(bw);
+             Scanner scan = new Scanner(new File(Archivo));
+             
+             while(scan.hasNext()){
+                 Local = scan.nextLine();
+                 System.out.println(Local);
+                 if(!Local.equals(Borrar)){
+                     pw.print(Local+"\r\n");
+                 }
+             }
+             scan.close();
+             pw.flush( );
+             pw.close();
+             oldFile.delete();
+             File dump = new File(Archivo);
+             newFile.renameTo(dump);
+         }catch(Exception e){
+             
+         }
+     }
 }

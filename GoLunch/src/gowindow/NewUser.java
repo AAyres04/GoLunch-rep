@@ -26,7 +26,7 @@ public class NewUser extends JFrame {
   private JPanel newUserPanel;
   private JTextField txuserer;
   private JTextField passer;
-  
+  private   int s = 0;
 
 
   public NewUser(){
@@ -89,6 +89,7 @@ public class NewUser extends JFrame {
     create.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
         try {
+          
             String Ultima;
             String IDS="";
             int ID=1;
@@ -105,27 +106,45 @@ public class NewUser extends JFrame {
             usertxter = scan.nextLine();
             passtxter = scan.nextLine();
             IDS = scan.nextLine();
-            }
+            
             if(punamer.equals(usertxter) ) {
-            JOptionPane.showMessageDialog(null,"Este Usuario ya esta creado");
+              s=1;
+              break;
+                /*JOptionPane.showMessageDialog(null,"Este Usuario ya esta creado");
             txuserer.setText("");
             passer.setText("");
-            txuserer.requestFocus();
+            txuserer.requestFocus();*/
 
             } 
         else if(punamer.equals("") && ppaswder.equals("")){
-            JOptionPane.showMessageDialog(null,"Porfavor inserte usuario y contraseña");
+            s=2;
+           // JOptionPane.showMessageDialog(null,"Porfavor inserte usuario y contraseña");
             }
         else {
+            s=3;
+            /*filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+"\r\n");
+            filewrite.close();
+            JOptionPane.showMessageDialog(null,"Tu cuenta se ha creado.");
+            dispose();
+            Login log = new Login();*/
+
+        }
+        }
+            
+            if (s==1){
+            JOptionPane.showMessageDialog(null,"Este Usuario ya esta creado");
+            txuserer.setText("");
+            passer.setText("");
+            txuserer.requestFocus();  
+            }else if (s==2){
+                JOptionPane.showMessageDialog(null,"Porfavor inserte usuario y contraseña");
+            }else if (s==3){
             filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+"\r\n");
             filewrite.close();
             JOptionPane.showMessageDialog(null,"Tu cuenta se ha creado.");
             dispose();
             Login log = new Login();
-
-
-
-        }
+            }
         } catch (IOException d) {
       d.printStackTrace();
     }

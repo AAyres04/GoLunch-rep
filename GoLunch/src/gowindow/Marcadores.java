@@ -16,6 +16,7 @@ import javax.swing.table.*;
  * @author Vicente
  */
 public class Marcadores extends JFrame {
+ private int s= 0;
  private JButton marcadores;
  private JButton listado;
  private JButton buscador;
@@ -91,10 +92,27 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
     panel.add(listado);
     panel.add(marcadores);
      panel.add(Spanel);
+     
     getContentPane().add(panel);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
     
+    Writer writer = null;
+    File check = new File("Marcadores"+Integer.toString(ID)+".txt");
+    if(check.exists() ){
+
+      //Checks if the file exists. will not add anything if the file does exist.
+    }else{
+      try{
+        File texting = new File("Marcadores"+Integer.toString(ID)+".txt");
+        writer = new BufferedWriter(new FileWriter(texting));
+        writer.write("message");
+
+      }catch(IOException e){
+        e.printStackTrace();
+        
+      }
+    }
     
         listado.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
@@ -110,15 +128,68 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
           new MenuPrincipal(ID);
       }
       });
-        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-        int row = tabla.rowAtPoint(evt.getPoint());
-        int col = tabla.columnAtPoint(evt.getPoint());
-        System.out.println(row);
-        System.out.println(col);
+    tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+    @Override
+    public void mouseClicked(java.awt.event.MouseEvent evt) {
+        try{
+            int row = tabla.rowAtPoint(evt.getPoint());
+            int col = tabla.columnAtPoint(evt.getPoint());
+            String Fila;
+            String Marca = Columnas1[row][col].toString();
+            System.out.println(Marca);
+            File file = new File("Marcadores"+Integer.toString(ID)+".txt");
+            String IDLocal = " ";
+            Fila = Integer.toString(row);
+            if (col == 6){
+                removerLinea("Marcadores"+Integer.toString(ID)+".txt",Fila);
+                ((DefaultTableModel)tabla.getModel()).removeRow(row);
+            }else{
+                
+            }
+            
+            
+        }catch(Exception e){
+            
+        }
+
+ 
         }
     
 });
  }
+ /**
+  * Remueve una linea especifica dentro de un archivo txt.
+  * @param Archivo
+  * @param Borrar 
+  */
+      public static void removerLinea(String Archivo,String Borrar){
+         String tempfile = "temp.txt";
+         File oldFile = new File(Archivo);
+         File newFile = new File(tempfile);
+         String Local;
+         
+         try{
+             FileWriter fw = new FileWriter(tempfile,true);
+             BufferedWriter bw = new BufferedWriter(fw);
+             PrintWriter pw = new PrintWriter(bw);
+             Scanner scan = new Scanner(new File(Archivo));
+             
+             while(scan.hasNext()){
+                 Local = scan.nextLine();
+                 System.out.println(Local);
+                 if(!Local.equals(Borrar)){
+                     pw.print(Local+"\r\n");
+                 }
+             }
+             scan.close();
+             pw.flush( );
+             pw.close();
+             oldFile.delete();
+             File dump = new File(Archivo);
+             newFile.renameTo(dump);
+         }catch(Exception e){
+             
+         }
+     }
+ 
 }
