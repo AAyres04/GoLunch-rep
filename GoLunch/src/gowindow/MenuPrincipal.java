@@ -201,10 +201,28 @@ public MenuPrincipal(int id){
           new Listado(ID);
       }
       });
-    tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        try{
+      
+       buscar.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            Object nombre,direccion,telefono,horai,horaf,categoria,marcador;
+            model.setRowCount(0);
+            for (int i = 0 ; i< 30 ; i++){
+                nombre = "Master roll";
+                direccion = "uruaguay";
+                telefono = "129810984";
+                horai = "17:00";
+                horaf = "24:00";
+                categoria  = "Sushi";
+                marcador = false; 
+                Object row[]= {nombre,direccion,telefono,horai,horaf,categoria,marcador};
+                model.addRow(row);
+            }
+        }
+        });
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            try{
             int row = tabla.rowAtPoint(evt.getPoint());
             int col = tabla.columnAtPoint(evt.getPoint());
             System.out.println(row);
