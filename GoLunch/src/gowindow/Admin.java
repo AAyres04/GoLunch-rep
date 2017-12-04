@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import javax.swing.table.*;
 /**
  *Ventana  para la administracion de datos.
  * @author Vicente
@@ -17,8 +18,7 @@ public class Admin  extends JFrame{
 
     private JTable Tabla;
     private String NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Tipo"};
-    private ArrayList<String> Columnas;
-    private String Columnas1[][]={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida"},{"Mac","mall","4523525","9:00","22:00","Comida Rapida"}};
+    private Object Columnas1[][];//={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida"},{"Mac","mall","4523525","9:00","22:00","Comida Rapida"}};
     private JPanel panel;
     private JScrollPane Spanel;
     private JButton volver;
@@ -33,11 +33,22 @@ public class Admin  extends JFrame{
     private JLabel Adm;
     private JDialog diag;
     private JButton ok;
+    private JButton cancelar;
     int ID;
     public  Admin(int id){
        super("Admin");
+        Columnas1= new Object[30][6];
+        for(int j = 0;j<30;j++){
+        Columnas1[j][0]="Pedro Juan Y Diego";
+        Columnas1[j][1]="Mall";
+        Columnas1[j][2]="3982091";
+        Columnas1[j][3]="19:00";
+        Columnas1[j][4]="19:00";
+        Columnas1[j][5]="Comida Rapida";
+        }
         Object[] options = new Object[] {};
-        Tabla = new JTable(Columnas1,NombreColumnas);
+        DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
+        Tabla = new JTable(model);
         panel = new JPanel();
         Spanel = new JScrollPane(Tabla);
         volver = new JButton("Salir");
@@ -45,14 +56,13 @@ public class Admin  extends JFrame{
         GoLunch = new JButton("GoLunch");
         agregar = new JButton ("Agregar");
         eliminar = new JButton("Eliminar");
-        ok = new JButton("OK");
+        ok = new JButton("Aceptar");
+        cancelar = new JButton ("Cancelar");
         ID = id;
         eliminar1 = new JOptionPane("Elige Numero de fila",JOptionPane.QUESTION_MESSAGE,
                                         JOptionPane.DEFAULT_OPTION,
                                         null,options, null);
         diag = new JDialog();
-        
-        
         Ad = new JPanel();
         Adm = new JLabel("Administador");
         NF= new JComboBox();
@@ -60,9 +70,11 @@ public class Admin  extends JFrame{
         NumeroFilas = Columnas1.length;
         eliminar1.add(NF);
         eliminar1.add(ok);
+        eliminar1.add(cancelar);
+   
         
-       Tabla.setEnabled(false);
-       Tabla.getTableHeader().setReorderingAllowed(false);
+        Tabla.setEnabled(false);
+        Tabla.getTableHeader().setReorderingAllowed(false);
         
         setSize(835,390);
         setLocation(300,100);
@@ -70,7 +82,7 @@ public class Admin  extends JFrame{
         panel.setLayout (null); 
         for(int i = 0;i < NumeroFilas;i++){
            NF.addItem(i+1);
-    }
+        }
         diag.getContentPane().add(eliminar1);
         Ad.setBounds(0,0,845,29);
         Adm.setBounds(400,10,150,20);
@@ -89,7 +101,8 @@ public class Admin  extends JFrame{
         panel.add(modificar);
         panel.add(eliminar);
         panel.add(GoLunch);
-         getContentPane().add(panel);
+        
+        getContentPane().add(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         
@@ -125,11 +138,20 @@ public class Admin  extends JFrame{
         diag.setVisible(true);
       }
       });
-          ok.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
+        ok.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
         
         diag.setVisible(false);
         String get = NF.getSelectedItem().toString();
+        int fila = Integer.parseInt(get);
+        ((DefaultTableModel)Tabla.getModel()).removeRow(fila-1);
+        NF.removeItem(NF.getItemCount());
+        }
+        });
+       cancelar.addActionListener(new ActionListener() {
+       public void actionPerformed(ActionEvent e) {
+        
+       diag.setVisible(false);
       }
       });
     }

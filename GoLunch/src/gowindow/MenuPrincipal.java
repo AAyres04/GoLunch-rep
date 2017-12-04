@@ -36,7 +36,7 @@ public class MenuPrincipal extends JFrame {
  private JButton Admin; 
  private JComboBox horaFinal;
  private JComboBox tipoComida;
-private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
+ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
  private String[] tipos = {"Todas","Picada","Sushi","China","Italiana",
                           "Peruana","Parrilla","Comida Rapida"};
  private String[] hora = {"Todas","00:00","01:00","02:00","03:00","04:00","05:00","06:00","07:00","08:00","09:00","10:00","11:00","12:00",

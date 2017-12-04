@@ -22,14 +22,13 @@ public class Marcadores extends JFrame {
  private JButton buscador;
  private JPanel panel;
  private int ID;
-private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
-  private Object Columnas1[][];/*={{"Pedro Juan Y Diego","Mall","4523525","9:00","22:00","Comida Rapida",true},
-      {"Mac","mall","4523525","9:00","22:00","Comida Rapida",true}};*/
+ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
+ private Object Columnas1[][];
  private JTable tabla;
  private JScrollPane Spanel;
  public Marcadores(int id){
-     super("GoLunch");
-             Columnas1= new Object[30][7];
+    super("GoLunch");
+    Columnas1= new Object[30][7];
     for(int j = 0;j<30;j++){
         Columnas1[j][0]="Pedro Juan Y Diego";
         Columnas1[j][1]="Mall";
@@ -39,7 +38,7 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
         Columnas1[j][5]="Comida Rapida";
         Columnas1[j][6]=true;
     }
-         DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
+     DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
      tabla = new JTable(model){
          
 
@@ -128,34 +127,34 @@ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial",
           new MenuPrincipal(ID);
       }
       });
-    tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        try{
-            int row = tabla.rowAtPoint(evt.getPoint());
-            int col = tabla.columnAtPoint(evt.getPoint());
-            String Fila;
-            String Marca = Columnas1[row][col].toString();
-            System.out.println(Marca);
-            File file = new File("Marcadores"+Integer.toString(ID)+".txt");
-            String IDLocal = " ";
-            Fila = Integer.toString(row);
-            if (col == 6){
-                removerLinea("Marcadores"+Integer.toString(ID)+".txt",Fila);
-                ((DefaultTableModel)tabla.getModel()).removeRow(row);
-            }else{
+      tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+        @Override
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            try{
+                int row = tabla.rowAtPoint(evt.getPoint());
+                int col = tabla.columnAtPoint(evt.getPoint());
+                String Fila;
+                String Marca = Columnas1[row][col].toString();
+                System.out.println(Marca);
+                File file = new File("Marcadores"+Integer.toString(ID)+".txt");
+                String IDLocal = " ";
+                Fila = Integer.toString(row);
+                if (col == 6){
+                    removerLinea("Marcadores"+Integer.toString(ID)+".txt",Fila);
+                    ((DefaultTableModel)tabla.getModel()).removeRow(row);
+                }else{
                 
+                }
+            
+            
+            }catch(Exception e){
+            
             }
-            
-            
-        }catch(Exception e){
-            
-        }
 
  
         }
     
-});
+    });
  }
  /**
   * Remueve una linea especifica dentro de un archivo txt.
