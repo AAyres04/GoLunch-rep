@@ -17,5 +17,6 @@ public class GoLunch {
     public static void main(String[] args) {
         // TODO code application logic here
         MenuGoLunch menu = new MenuGoLunch();
+        menu.ejecutar();
     }
 }

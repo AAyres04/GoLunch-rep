@@ -24,6 +24,12 @@ public class MenuGoLunch {
         this.objFiltrado = new Filtrado();
         this.buscador = new Busqueda();
         this.objFiltrado.rellenarLista(this.objFiltrado.recepcionDatos("Restaurantes.xlsx"));
+
+    }
+    /**
+     * Ejecuta el programa.
+     */
+    public void ejecutar(){
         Login login = new Login();
     }
     
