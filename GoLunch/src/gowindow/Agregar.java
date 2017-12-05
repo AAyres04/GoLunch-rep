@@ -54,11 +54,10 @@ public class Agregar extends JFrame{
         Panel = new JPanel();
         volver = new JButton("Volver");
         ID = id;
-       // Locales = Lista.getListaLocales();
-             Panel.setLayout(null);
-     setSize(290,350);
-     setLocation(500,280);
-     setResizable(false);
+        Panel.setLayout(null);
+        setSize(290,350);
+        setLocation(500,280);
+        setResizable(false);
 
      
         nombre.setBounds(10, 20, 150, 20);
@@ -94,31 +93,21 @@ public class Agregar extends JFrame{
         Panel.add(Categorias1);
         Panel.add(Agregar);
         
-            getContentPane().add(Panel);
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            setVisible(true);
+        getContentPane().add(Panel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
      
-           volver.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-          dispose();
-          new Admin(ID);
-      }
-      });
+        volver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new Admin(ID);
+            }
+        });
            
         Agregar.addActionListener(new ActionListener() {
-        public void actionPerformed(ActionEvent e) {
-            Local = new LocalComida(0);
-            Local.setNombre(nombre1.getText());
-            Local.setDireccion(direccion1.getText());
-            Local.setTelefono(telefono1.getText());
-            Local.setHoraInicio(HoraI1.getText());
-            Local.setHoraFinal(HoraF1.getText());
-            Local.setCategorias(Categorias1.getText());
-            Local.setLocalBuscado(false);
-            Local.setIdRest(0);
-            Locales.add(Local);
-            Lista.setListaLocales(Locales);
-      }
-      });
+            public void actionPerformed(ActionEvent e) {
+            
+            }
+        });
     }
 }

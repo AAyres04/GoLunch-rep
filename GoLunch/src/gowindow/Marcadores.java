@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import java.util.*;
+import javax.swing.event.*;
 import javax.swing.table.*;
 /**
  *Ventana la cual imprime los marcadores seleccionados por el usuario.
@@ -22,7 +23,8 @@ public class Marcadores extends JFrame {
  private JButton buscador;
  private JPanel panel;
  private int ID;
- private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial","Hora Final","Categorias","Marcador"};
+ private Object NombreColumnas[]={"Nombre","Direccion","Telefono","Hora Inicial"
+         ,"Hora Final","Categorias","Marcador"};
  private Object Columnas1[][];
  private JTable tabla;
  private JScrollPane Spanel;
@@ -41,13 +43,8 @@ public class Marcadores extends JFrame {
      DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
      tabla = new JTable(model){
          
+        private static final long serialVersionUID = 1L;
 
-            private static final long serialVersionUID = 1L;
-
-            /*@Override
-            public Class getColumnClass(int column) {
-            return getValueAt(0, column).getClass();
-            }*/
             @Override
             public Class getColumnClass(int column) {
                 switch (column) {
@@ -68,8 +65,8 @@ public class Marcadores extends JFrame {
                 }
             }
             public boolean isCellEditable(int rowIndex, int columnIndex){
-    return columnIndex == 6; //Or whatever column index you want to be editable
-    }   
+                return columnIndex == 6; 
+            }   
      };
     panel = new JPanel();
     marcadores = new JButton("Marcadores");
@@ -127,15 +124,14 @@ public class Marcadores extends JFrame {
           new MenuPrincipal(ID);
       }
       });
-      tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            try{
-                int row = tabla.rowAtPoint(evt.getPoint());
-                int col = tabla.columnAtPoint(evt.getPoint());
+      
+    tabla.getModel().addTableModelListener(new TableModelListener() {
+        public void tableChanged(TableModelEvent evt) {
+                try{
+                int row = evt.getFirstRow();
+                int col = evt.getColumn();
                 String Fila;
                 String Marca = Columnas1[row][col].toString();
-                System.out.println(Marca);
                 File file = new File("Marcadores"+Integer.toString(ID)+".txt");
                 String IDLocal = " ";
                 Fila = Integer.toString(row);
@@ -150,12 +146,10 @@ public class Marcadores extends JFrame {
             }catch(Exception e){
             
             }
+  }
+});
 
- 
-        }
-    
-    });
- }
+}
  /**
   * Remueve una linea especifica dentro de un archivo txt.
   * @param Archivo
@@ -175,7 +169,6 @@ public class Marcadores extends JFrame {
              
              while(scan.hasNext()){
                  Local = scan.nextLine();
-                 System.out.println(Local);
                  if(!Local.equals(Borrar)){
                      pw.print(Local+"\r\n");
                  }

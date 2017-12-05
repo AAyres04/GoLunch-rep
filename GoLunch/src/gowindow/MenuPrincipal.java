@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.*;
 import java.lang.*;
 import golunch.*;
+import javax.swing.event.*;
 import javax.swing.table.*;
 /**
  *Ventanan principal de busqueda de restaurantes.
@@ -111,7 +112,6 @@ public MenuPrincipal(int id){
    horaFinal =  new JComboBox(hora);
    Container cont = new Container();
    Spanel = new JScrollPane(tabla);
-    System.out.println(Columnas1.length);
    for(int i = 0 ; i < Columnas1.length;i++){
            Object n = Columnas1[i][0];
            Object d = Columnas1[i][1];
@@ -189,7 +189,7 @@ public MenuPrincipal(int id){
       }
     }
     
-         marcadores.addActionListener(new ActionListener() {
+      marcadores.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
           new Marcadores(ID);
@@ -219,61 +219,55 @@ public MenuPrincipal(int id){
             }
         }
         });
-        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
-        @Override
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
+        
+       tabla.getModel().addTableModelListener(new TableModelListener() {
+
+        public void tableChanged(TableModelEvent evt) {
             try{
-            int row = tabla.rowAtPoint(evt.getPoint());
-            int col = tabla.columnAtPoint(evt.getPoint());
+            int row = evt.getFirstRow();
             System.out.println(row);
-            System.out.println(col);
+            int col = evt.getColumn();
+            TableModel model = (TableModel)evt.getSource();
+            Object data = model.getValueAt(row, col).toString();
             String Fila;
-            String Marca = Columnas1[row][col].toString();
-            System.out.println(Marca);
             File file = new File("Marcadores"+Integer.toString(ID)+".txt");
             String IDLocal = " ";
             Fila = Integer.toString(row);
             if (col == 6){
-            if(!Marca.equals("true")){
-            FileWriter filewrite = new FileWriter(file, true);    
-            Scanner scan = new Scanner(file); 
-            while (scan.hasNext()) {
-            IDLocal = scan.nextLine();
-                System.out.println(Fila);
-                System.out.println(IDLocal);
-            if (Fila.equals(IDLocal)){
-                s=1;
-
-                break;
-            }else{
-                s=2;
-            }
+                if(data.equals("true")){
+                    FileWriter filewrite = new FileWriter(file, true);    
+                    Scanner scan = new Scanner(file); 
+                while (scan.hasNext()) {
+                    IDLocal = scan.nextLine();
+                if (Fila.equals(IDLocal)){
+                    s=1;
+                    break;
+                    
+                }else{
+                    s=2;
+                }
             
-            }
-            if (s==1){
-                scan.close();
-            }else{
-                filewrite.write(Fila+"\r\n"); 
-                filewrite.close();
-                scan.close();
-               
-            }
-            Columnas1[row][col]=true;
-            }else{
+                }
+                if (s==1){
+                    scan.close();
+                }else{
+                    filewrite.write(Fila+"\r\n"); 
+                    filewrite.close();
+                    scan.close();
+                }
+                }else{
                 
-                removerLinea("Marcadores"+Integer.toString(ID)+".txt",Fila);
-                Columnas1[row][col]=false;
-            }
-            }
-            
+                    removerLinea("Marcadores"+Integer.toString(ID)+".txt",Fila);
+                }
+                }
+        
         }catch(Exception e){
             
         }
 
  
         }
-    
-});
+        });
           Admin.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
@@ -302,7 +296,6 @@ public MenuPrincipal(int id){
              
              while(scan.hasNext()){
                  Local = scan.nextLine();
-                 System.out.println(Local);
                  if(!Local.equals(Borrar)){
                      pw.print(Local+"\r\n");
                  }

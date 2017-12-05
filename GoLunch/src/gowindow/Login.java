@@ -102,14 +102,11 @@ public class Login extends JFrame {
             IDS=scan.nextLine();
             if(puname.equals("User") && ppaswd.equals("Admin")){
                 s=3;
-
+                break;
             }if(puname.equals(usertxt) && ppaswd.equals(passtxt)) {
                 s=1;
-                System.out.println(IDS);
                 ID = Integer.parseInt(IDS);
-           /* MainMenu menu =new MainMenu();
-            dispose();
-            break;*/
+                break;
           } 
           else if(puname.equals("") && ppaswd.equals("")){
               s=2;
@@ -125,7 +122,6 @@ public class Login extends JFrame {
 
           }
             if (s==1){
-              System.out.println(ID);
                  dispose(); 
                JOptionPane.showMessageDialog(null,"Has iniciado sesion correctamente.");
                 MenuPrincipal menu =new MenuPrincipal(ID);
@@ -140,7 +136,7 @@ public class Login extends JFrame {
                 txuser.requestFocus();
             }else if (s==3){
                 dispose();
-            Eleccion eleccion = new Eleccion(ID);
+            MenuPrincipal Menu  = new MenuPrincipal(1);
             JOptionPane.showMessageDialog(null,"Usted a ingresado como Administrador");
             }
 

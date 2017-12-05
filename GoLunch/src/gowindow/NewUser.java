@@ -75,9 +75,9 @@ public class NewUser extends JFrame {
       //Checks if the file exists. will not add anything if the file does exist.
     }else{
       try{
-        File texting = new File("userPass.txt");
-        writer = new BufferedWriter(new FileWriter(texting));
-        writer.write("message");
+      File texting = new File("userPass.txt");
+      writer = new BufferedWriter(new FileWriter(texting));
+      writer.write("message");
       }catch(IOException e){
         e.printStackTrace();
       }
@@ -103,63 +103,52 @@ public class NewUser extends JFrame {
             String punamer = txuserer.getText();
             String ppaswder = passer.getText();
             while (scan.hasNext()) {
-            usertxter = scan.nextLine();
-            passtxter = scan.nextLine();
-            IDS = scan.nextLine();
+                usertxter = scan.nextLine();
+                passtxter = scan.nextLine();
+                IDS = scan.nextLine();
             
-            if(punamer.equals(usertxter) ) {
-              s=1;
-              break;
-                /*JOptionPane.showMessageDialog(null,"Este Usuario ya esta creado");
-            txuserer.setText("");
-            passer.setText("");
-            txuserer.requestFocus();*/
-
-            } 
-        else if(punamer.equals("") && ppaswder.equals("")){
-            s=2;
-           // JOptionPane.showMessageDialog(null,"Porfavor inserte usuario y contraseña");
+                if(punamer.equals(usertxter) ) {
+                    s=1;
+                break;
+                } 
+                else if(punamer.equals("") && ppaswder.equals("")){
+                    s=2;
+                }
+                else {
+                    s=3;
+     
+                }
             }
-        else {
-            s=3;
-            /*filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+"\r\n");
-            filewrite.close();
-            JOptionPane.showMessageDialog(null,"Tu cuenta se ha creado.");
-            dispose();
-            Login log = new Login();*/
-
-        }
-        }
-            
             if (s==1){
-            JOptionPane.showMessageDialog(null,"Este Usuario ya esta creado");
-            txuserer.setText("");
-            passer.setText("");
-            txuserer.requestFocus();  
+                JOptionPane.showMessageDialog(null,"Este Usuario ya esta creado");
+                txuserer.setText("");
+                passer.setText("");
+                txuserer.requestFocus();  
             }else if (s==2){
                 JOptionPane.showMessageDialog(null,"Porfavor inserte usuario y contraseña");
             }else if (s==3){
-            filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+"\r\n");
-            filewrite.close();
-            JOptionPane.showMessageDialog(null,"Tu cuenta se ha creado.");
-            dispose();
-            Login log = new Login();
+                filewrite.write(punamer+"\r\n" +ppaswder+ "\r\n"+ID+"\r\n");
+                filewrite.close();
+                JOptionPane.showMessageDialog(null,"Tu cuenta se ha creado.");
+                dispose();
+                Login log = new Login();
             }
-        } catch (IOException d) {
-      d.printStackTrace();
-    }
+        }catch (IOException d){
+            d.printStackTrace();
+        }
 
       }
     });
-     salir.addActionListener(new ActionListener() {
+    
+    salir.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
           dispose();
           Login log = new Login();
       }
-      });
+    });
      
        
-    }
+   }
   /**
    * Metodo el cual regresa la Ultima linea de un archivo TxT
    * @param file
@@ -205,7 +194,6 @@ public class NewUser extends JFrame {
             try {
                 fileHandler.close();
             } catch (IOException e) {
-                /* ignore */
             }
     }
 }
