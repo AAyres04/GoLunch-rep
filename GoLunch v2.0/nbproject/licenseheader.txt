@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} Proyecto GoLunch.
+${licensePrefix} Vicente De Orúe, Antonio Ayres, Pablo Campos.
+<#if licenseLast??>
+${licenseLast}
+</#if>
