@@ -189,6 +189,12 @@ private Object NombreColumnas[]={"ID","Nombre","Direccion","Telefono","Hora Inic
              
          }
      }
+      /**
+       * Metodo el cual lee un archivo txt y compara cada linea del archivo con
+       * el ID de cada uno de los locales y si son iguales, añade datos a la
+       * matriz Columnas1[][]
+       * @param menuList 
+       */
  public void LeerTxT(MenuGoLunch menuList){
      try{
      File file = new File("Marcadores"+Integer.toString(ID)+".txt");
@@ -196,7 +202,6 @@ private Object NombreColumnas[]={"ID","Nombre","Direccion","Telefono","Hora Inic
      String ID;
      String IDLocal ="";
      int j = 0;
-         System.out.println("hola");
      while(scan.hasNext()){
          IDLocal = scan.nextLine();
          System.out.println(IDLocal);
@@ -224,7 +229,11 @@ private Object NombreColumnas[]={"ID","Nombre","Direccion","Telefono","Hora Inic
      }
 
  }
- 
+ /**
+  * Metodo el cual cuenta la cantidad de lineas que tiene un archivo txt y 
+  * regresa un entero con el total.
+  * @return 
+  */
  public int contador(){
      try{
      File file = new File("Marcadores"+Integer.toString(ID)+".txt");

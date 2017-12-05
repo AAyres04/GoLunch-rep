@@ -54,6 +54,7 @@ public class MenuPrincipal extends JFrame {
     public MenuPrincipal(int id, MenuGoLunch menu){
         
         super("GoLunch");
+        ID = id;
         /* Objeto de tipo menu para manejar la lista y los buscadores*/
         Admin = new JButton("Administrador");
         Columnas1= new Object[menu.getObjFiltrado().getListaLocales().size()][8];
@@ -65,7 +66,7 @@ public class MenuPrincipal extends JFrame {
             Columnas1[j][4]=menu.getObjFiltrado().getListaLocales().get(j).getHoraInicio();
             Columnas1[j][5]=menu.getObjFiltrado().getListaLocales().get(j).getHoraFinal();
             Columnas1[j][6]=menu.getObjFiltrado().getListaLocales().get(j).getCategorias();
-            Columnas1[j][7]=false;
+            Columnas1[j][7]=CompararID(Columnas1[j][0].toString());
         }
         DefaultTableModel model = new DefaultTableModel(Columnas1,NombreColumnas);
         tabla = new JTable(model){
@@ -130,7 +131,7 @@ public class MenuPrincipal extends JFrame {
             Object ti = Columnas1[i][5];
         }
  
-        ID = id;
+
         if (ID!=1){
             Admin.setVisible(false);
         }else{
@@ -337,4 +338,37 @@ public class MenuPrincipal extends JFrame {
              
         }
     }
+    /**
+     * Metodo que compara el String dado id con cada linea de un archivo txt y
+     * si alguna de esas son iguales retorna true, si no es asi retorna false.
+     * @param id
+     * @return 
+     */
+    public boolean CompararID(String id){
+     try{
+     File file = new File("Marcadores"+Integer.toString(ID)+".txt");
+     Scanner scan = new Scanner(new File("Marcadores"+Integer.toString(ID)+".txt"));   
+     String IDLocal="";
+     int s = 0 ;
+     while (scan.hasNextLine()){
+         IDLocal=scan.nextLine();
+         if (IDLocal.equals(id)){
+             s=1;
+             break;
+         }else{
+             s=0;
+         } 
+     }
+     if(s==1){
+            scan.close();
+            return true;
+     }else{
+         scan.close();
+         return false;
+     }
+     }catch(Exception e ){
+         return false;
+     }
+
+ }
 }
