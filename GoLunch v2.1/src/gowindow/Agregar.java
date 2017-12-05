@@ -1,0 +1,116 @@
+
+package gowindow;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import java.util.*;
+import golunch.*;
+
+/**
+ *
+ * @author Vicente
+ */
+public class Agregar extends JFrame{
+    
+    private JLabel nombre;
+    private JLabel direccion;
+    private JLabel telefono;
+    private JLabel HoraI;
+    private JLabel HoraF;
+    private JLabel Categorias;
+    private JTextField nombre1;
+    private JTextField direccion1;
+    private JTextField telefono1;
+    private JTextField HoraI1;
+    private JTextField HoraF1;
+    private JTextField Categorias1;
+    private JButton Agregar;
+    private JPanel Panel;
+    private JButton volver;
+    int ID;
+    
+    public Agregar(int id, MenuGoLunch menu){
+        super("Agregar Local");
+        direccion = new JLabel("Direccion:");
+        telefono = new JLabel("Telefono:");
+        HoraI = new JLabel("Hora Inicial:");
+        HoraF = new JLabel("Hora Final:");
+        nombre = new JLabel("Nombre: ");
+        Categorias= new JLabel ("Categorias: ");
+        direccion1= new JTextField();
+        nombre1 = new JTextField();
+        telefono1 = new JTextField();
+        HoraI1 = new JTextField();
+        HoraF1 = new JTextField();
+        Categorias1 = new JTextField();
+        Agregar = new JButton("Agregar");
+        Panel = new JPanel();
+        volver = new JButton("Volver");
+        ID = id;
+        
+        Panel.setLayout(null);
+        setSize(290,350);
+        setLocation(500,280);
+        setResizable(false);
+
+        nombre.setBounds(10, 20, 150, 20);
+        nombre1.setBounds(120, 20, 150, 20);
+        direccion.setBounds(10, 60, 100, 20);
+        direccion1.setBounds(120, 60, 150, 20);
+        telefono.setBounds(10, 100, 100, 20);
+        telefono1.setBounds(120, 100, 150,20);
+        HoraI.setBounds(10,140,100,20);
+        HoraI1.setBounds(120, 140, 150, 20);
+
+        HoraF.setBounds(10, 180, 100, 20);
+        HoraF1.setBounds(120, 180, 150, 20);
+        Categorias.setBounds(10,220,100,20);
+        Categorias1.setBounds(120,220,150,20);
+        Agregar.setBounds(180, 280, 100, 20);
+        volver.setBounds(10,280,100,20);
+        
+        Panel.add(volver);
+        Panel.add(telefono);
+        Panel.add(telefono1);
+        Panel.add(nombre);
+        Panel.add(nombre1);
+        Panel.add(direccion);
+        Panel.add(direccion1);
+        Panel.add(HoraI);
+        Panel.add(HoraF);
+        Panel.add(HoraI1);
+        Panel.add(HoraF1);
+        Panel.add(Categorias);
+        Panel.add(Categorias1);
+        Panel.add(Agregar);
+        
+        getContentPane().add(Panel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+     
+        volver.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                new Admin(ID, menu);
+            }
+        });
+           
+        Agregar.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                LocalComida Local = new LocalComida();
+                Local = new LocalComida();
+                Local.setNombre(nombre1.getText());
+                Local.setDireccion(direccion1.getText());
+                Local.setTelefono(telefono1.getText());
+                Local.setHoraInicio(HoraI1.getText());
+                Local.setHoraFinal(HoraF1.getText());
+                Local.setHora(HoraI1.getText()+"-"+HoraF1.getText()+".");
+                Local.setCategorias(Categorias1.getText());
+                Local.setIdRest(menu.getObjFiltrado().getListaLocales().get(menu.getObjFiltrado().getListaLocales().size()-1).getIdRest()+1);
+                menu.getObjFiltrado().getListaLocales().add(Local);
+                menu.getObjFiltrado().agregarLocalExcel(Local);
+            }
+        });
+    }
+}
