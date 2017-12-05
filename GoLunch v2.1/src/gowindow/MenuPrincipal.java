@@ -223,7 +223,8 @@ public class MenuPrincipal extends JFrame {
                     if (menu.getObjFiltrado().getListaLocales().get(i).getNombreBuscado() && 
                             menu.getObjFiltrado().getListaLocales().get(i).getDireccionBuscada()&&
                                 menu.getObjFiltrado().getListaLocales().get(i).getHoraInicioBuscada() && 
-                                    menu.getObjFiltrado().getListaLocales().get(i).getHoraFinalBuscada()){ 
+                                    menu.getObjFiltrado().getListaLocales().get(i).getHoraFinalBuscada() &&
+                                        menu.getObjFiltrado().getListaLocales().get(i).getCategoriasBuscada()){ 
                         
                         showLocalesTrue.add(menu.getObjFiltrado().getListaLocales().get(i));
                     }
@@ -238,7 +239,7 @@ public class MenuPrincipal extends JFrame {
                     horai = showLocalesTrue.get(i).getHoraInicio();
                     horaf = showLocalesTrue.get(i).getHoraFinal();
                     categoria  = showLocalesTrue.get(i).getCategorias();
-                    marcador = compararID(Integer.toString(showLocalesTrue.get(i).getIdRest())); 
+                    marcador = compararID(Integer.toString(showLocalesTrue.get(i).getIdRest()));
                     Object row[]= {ID,nombre,direccion,telefono,horai,horaf,categoria,marcador};
                     model.addRow(row);
                 }
@@ -257,7 +258,7 @@ public class MenuPrincipal extends JFrame {
                     Object data = model.getValueAt(row, col).toString();
                     File file = new File("Marcadores"+Integer.toString(ID)+".txt");
                     String IDLocal = " ";
-                    Fila = Columnas1[row][0].toString();
+                    Fila = model.getValueAt(row, 0).toString();
                     if (col == 7){
                         if(data.equals("true")){
                             FileWriter filewrite = new FileWriter(file, true);    
