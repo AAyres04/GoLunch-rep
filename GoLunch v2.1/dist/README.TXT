@@ -34,3 +34,7 @@ class name in the manifest Main-Class element.
 
 JAVADOC
 file:///C:/Users/tonio/Documents/GitHub/GoLunch-rep/GoLunch%20v2.1/dist/javadoc/index.html
+Archivos necesarios:
+Restaurantes.xlsl
+
+Sin este Archivo, no se ejecuta el .jar
