@@ -32,8 +32,6 @@ class name in the Main Class field. Alternatively, you can manually type the
 class name in the manifest Main-Class element.
 
 
-JAVADOC
-file:///C:/Users/tonio/Documents/GitHub/GoLunch-rep/GoLunch%20v2.1/dist/javadoc/index.html
 Archivos necesarios:
 Restaurantes.xlsl
 
