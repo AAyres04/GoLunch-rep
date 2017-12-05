@@ -275,6 +275,7 @@ public class MenuPrincipal extends JFrame {
                                 
                             }
                             if (s==1){
+                                filewrite.close();
                                 scan.close();
                             }else{
                                 filewrite.write(Fila+"\r\n"); 
